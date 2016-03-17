@@ -47,15 +47,28 @@ class CurrencyTest < Minitest::Test
     end
   end
 
-  def test_is_same_code_add
+  def test_is_same_code_minus
     currency1 = Currency.new(20,"USD")
-    currency2 = Currency.new(40,"USD")
-    currency3 = Currency.new(60,"USD")
-    assert_equal(currency3, currency1 + currency2)
+    currency2 = Currency.new(5,"USD")
+    currency3 = Currency.new(15,"USD")
+    assert_equal(currency3, currency1 - currency2)
 
-    currency4 = Currency.new(50,"CAD")
+    currency4 = Currency.new(17,"CAD")
     assert_raises DifferentCurrencyCodeError do
-      currency1 + currency4
+      currency1 - currency4
     end
+  end
+
+  def test_multiply
+    currency1 = Currency.new(20,"USD")
+    currency2 = Currency.new(60,"USD")
+    assert_equal(currency2, currency1 * 3)
+
+    currency3 = Currency.new(30,"USD")
+    assert_equal(currency3, currency1 * 1.5)
+
+    currency4 = Currency.new(1.75,"USD")
+    currency5 = Currency.new(5.88,"USD")
+    assert_equal(currency5, currency4 * 3.36)
   end
 end

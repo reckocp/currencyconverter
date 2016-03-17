@@ -24,4 +24,16 @@ class Currency
     end
   end
 
+  def -(other)
+    if self.code == other.code
+      Currency.new(self.amount - other.amount, self.code)
+    else
+      raise DifferentCurrencyCodeError
+    end
+  end
+
+  def *(number)
+    rounded_amount = self.amount * number
+    Currency.new(rounded_amount.round(2), self.code)
+  end
 end
